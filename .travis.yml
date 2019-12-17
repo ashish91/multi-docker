@@ -3,18 +3,18 @@ services:
   - docker
 
 before_install:
-  - docker build -t ashish91/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ashishp91/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true ashish91/react-test npm test -- --coverage
+  - docker run -e CI=true ashishp91/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t ashish91/multi-client ./client
-  - docker build -t ashish91/mult-nginx ./nginx
-  - docker build -t ashish91/multi-server ./server
-  - docker build -t ashish91/multi-worker ./worker
+  - docker build -t ashishp91/multi-client ./client
+  - docker build -t ashishp91/mult-nginx ./nginx
+  - docker build -t ashishp91/multi-server ./server
+  - docker build -t ashishp91/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --pasword-stdin
-  - docker push ashish91/multi-client
-  - docker push ashish91/multi-nginx
-  - docker push ashish91/multi-server
-  - docker push ashish91/multi-worker
+  - docker push ashishp91/multi-client
+  - docker push ashishp91/multi-nginx
+  - docker push ashishp91/multi-server
+  - docker push ashishp91/multi-worker
