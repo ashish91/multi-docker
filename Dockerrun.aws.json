@@ -5,30 +5,37 @@
       "name": "client",
       "image": "ashishp91/multi-client",
       "hostname": "client",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "server",
       "image": "ashishp91/multi-server",
       "hostname": "api",
-      "essential": false
+      "essential": false,
+      "memory": 128
+
     },
     {
       "name": "worker",
       "image": "ashishp91/multi-worker",
       "hostname": "worker",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "nginx",
       "image": "ashishp91/multi-nginx",
       "hostname": "nginx",
       "essential": true,
-      "portMappings": {
-        "hostPort": 80,
-        "containerPort": 80
-      },
-      "links": ["client", "server"]
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"],
+      "memory": 128
     }
   ]
 }
